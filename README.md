@@ -33,4 +33,4 @@ Tasks live in `data/tasks.json`; injected failures are the `failures` field
 - `results.csv` - one row per model x task x repeat
 - `summary.csv` - one row per model
 - `traces.json` - every tool call, argument and model reply
-- `cost_by_model.png`, `time_by_model.png`, `accuracy_by_model.png`
+- `cost_by_model.png`, `time_by_model.png`, `accuracy_by_model.png`, `tokens_by_model.png`
