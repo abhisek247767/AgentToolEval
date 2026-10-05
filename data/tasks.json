@@ -1,0 +1,117 @@
+[
+  {
+    "id": "T01", "category": "lookup",
+    "prompt": "What is the price of the Sony WH-CH520?",
+    "answer": {"type": "value", "value": "4490"},
+    "required_tools": ["search_products"],
+    "allowed_tools": ["search_products"],
+    "expected_calls": [],
+    "min_calls": 1
+  },
+  {
+    "id": "T02", "category": "lookup",
+    "prompt": "Is the HP 15s in stock?",
+    "answer": {"type": "value", "value": "NO"},
+    "required_tools": ["search_products", "check_stock"],
+    "allowed_tools": ["search_products", "check_stock"],
+    "expected_calls": [{"tool": "check_stock", "args": {"product_id": "P2"}}],
+    "min_calls": 2
+  },
+  {
+    "id": "T03", "category": "multi_step",
+    "prompt": "Which laptops under 50000 rupees are in stock right now?",
+    "answer": {"type": "set", "value": ["P1", "P3"]},
+    "required_tools": ["search_products", "check_stock"],
+    "allowed_tools": ["search_products", "check_stock"],
+    "expected_calls": [
+      {"tool": "check_stock", "args": {"product_id": "P1"}},
+      {"tool": "check_stock", "args": {"product_id": "P3"}}
+    ],
+    "min_calls": 5
+  },
+  {
+    "id": "T04", "category": "multi_step",
+    "prompt": "What is the cheapest laptop I can buy today (it must be in stock)?",
+    "answer": {"type": "set", "value": ["P1"]},
+    "required_tools": ["search_products", "check_stock"],
+    "allowed_tools": ["search_products", "check_stock"],
+    "expected_calls": [{"tool": "check_stock", "args": {"product_id": "P1"}}],
+    "min_calls": 3
+  },
+  {
+    "id": "T05", "category": "action",
+    "prompt": "Please order 2 units of the boAt Rockerz 450.",
+    "answer": {"type": "value", "value": "ORD-P9-2"},
+    "required_tools": ["search_products", "place_order"],
+    "allowed_tools": ["search_products", "check_stock", "place_order"],
+    "expected_calls": [{"tool": "place_order", "args": {"product_id": "P9", "quantity": 2}}],
+    "min_calls": 2
+  },
+  {
+    "id": "T06", "category": "action",
+    "prompt": "Order 1 Samsung Galaxy M34 for me.",
+    "answer": {"type": "value", "value": "OUT_OF_STOCK"},
+    "required_tools": ["search_products"],
+    "allowed_tools": ["search_products", "check_stock", "place_order"],
+    "expected_calls": [],
+    "min_calls": 2
+  },
+  {
+    "id": "T07", "category": "multi_step",
+    "prompt": "Which phones under 20000 rupees are in stock?",
+    "answer": {"type": "set", "value": ["P7"]},
+    "required_tools": ["search_products", "check_stock"],
+    "allowed_tools": ["search_products", "check_stock"],
+    "expected_calls": [{"tool": "check_stock", "args": {"product_id": "P7"}}],
+    "min_calls": 3
+  },
+  {
+    "id": "T08", "category": "no_tool",
+    "prompt": "Quick maths question, no store lookup needed: what is 15% of 2000?",
+    "answer": {"type": "value", "value": "300"},
+    "required_tools": [],
+    "allowed_tools": [],
+    "expected_calls": [],
+    "min_calls": 0
+  },
+  {
+    "id": "T09", "category": "recovery",
+    "prompt": "What is the price of the MacBook Air M2?",
+    "answer": {"type": "value", "value": "89900"},
+    "required_tools": ["search_products"],
+    "allowed_tools": ["search_products"],
+    "expected_calls": [],
+    "min_calls": 2,
+    "failures": [{"tool": "search_products", "times": 1, "error": "timeout", "message": "Search service timed out. Please retry."}]
+  },
+  {
+    "id": "T10", "category": "recovery",
+    "prompt": "Is the Dell Inspiron 3520 in stock?",
+    "answer": {"type": "value", "value": "YES"},
+    "required_tools": ["search_products", "check_stock"],
+    "allowed_tools": ["search_products", "check_stock"],
+    "expected_calls": [{"tool": "check_stock", "args": {"product_id": "P5"}}],
+    "min_calls": 3,
+    "failures": [{"tool": "check_stock", "times": 1, "error": "service_unavailable", "message": "503: inventory service unavailable. Please retry."}]
+  },
+  {
+    "id": "T11", "category": "recovery",
+    "prompt": "Is the Acer Aspire 5 in stock?",
+    "answer": {"type": "value", "value": "UNKNOWN"},
+    "required_tools": ["search_products", "check_stock"],
+    "allowed_tools": ["search_products", "check_stock"],
+    "expected_calls": [{"tool": "check_stock", "args": {"product_id": "P3"}}],
+    "min_calls": 2,
+    "failures": [{"tool": "check_stock", "times": -1, "error": "service_unavailable", "message": "503: inventory service unavailable."}]
+  },
+  {
+    "id": "T12", "category": "recovery",
+    "prompt": "Order 1 Sony WH-CH520 please.",
+    "answer": {"type": "value", "value": "ORD-P10-1"},
+    "required_tools": ["search_products", "place_order"],
+    "allowed_tools": ["search_products", "check_stock", "place_order"],
+    "expected_calls": [{"tool": "place_order", "args": {"product_id": "P10", "quantity": 1}}],
+    "min_calls": 3,
+    "failures": [{"tool": "place_order", "times": 1, "error": "rate_limited", "message": "429: too many requests. Please retry."}]
+  }
+]

@@ -1,0 +1,4 @@
+model,runs,errored_runs,accuracy_pct,tool_selection_pct,args_correct_pct,recovery_pct,mean_efficiency,avg_tool_calls,invalid_calls_total,avg_tokens_per_task,median_latency_s,est_cost_total_usd,est_cost_per_correct_usd
+gemma4:31b,36,0,91.7,100.0,100.0,100.0,0.977,2.5,0,1980,2.346,0.007914,0.00023983
+gpt-oss:120b,36,0,88.9,100.0,100.0,100.0,0.861,3.11,0,3023,3.18,0.013264,0.00041449
+gpt-oss:20b,36,0,83.3,100.0,100.0,100.0,0.855,3.03,0,2933,5.18,0.01286,0.00042867
