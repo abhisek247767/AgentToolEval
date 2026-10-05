@@ -1,0 +1,12 @@
+[
+  {"id": "P1",  "name": "Lenovo IdeaPad Slim 3", "category": "laptop",     "price": 42990, "stock": 5},
+  {"id": "P2",  "name": "HP 15s",                "category": "laptop",     "price": 38500, "stock": 0},
+  {"id": "P3",  "name": "Acer Aspire 5",         "category": "laptop",     "price": 45990, "stock": 3},
+  {"id": "P4",  "name": "ASUS Vivobook 15",      "category": "laptop",     "price": 49999, "stock": 0},
+  {"id": "P5",  "name": "Dell Inspiron 3520",    "category": "laptop",     "price": 50000, "stock": 7},
+  {"id": "P6",  "name": "MacBook Air M2",        "category": "laptop",     "price": 89900, "stock": 2},
+  {"id": "P7",  "name": "Redmi Note 13",         "category": "phone",      "price": 17999, "stock": 10},
+  {"id": "P8",  "name": "Samsung Galaxy M34",    "category": "phone",      "price": 15999, "stock": 0},
+  {"id": "P9",  "name": "boAt Rockerz 450",      "category": "headphones", "price": 1499,  "stock": 20},
+  {"id": "P10", "name": "Sony WH-CH520",         "category": "headphones", "price": 4490,  "stock": 4}
+]
