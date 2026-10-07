@@ -4,10 +4,12 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 authors = [
-    { name = "abhisek-RSV", email = "abhishek@rsageventures.com" }
+    { name = "abhisek", email = "abhisek169@gmail.com" }
 ]
 requires-python = ">=3.13"
 dependencies = [
+    "kaggle>=2.2.4",
+    "kaggle-benchmarks>=0.6.1",
     "matplotlib>=3.11.2",
     "ollama>=0.6.3",
     "python-dotenv>=1.2.4",
