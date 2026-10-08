@@ -10,9 +10,10 @@ take to decide. Tools are fake and deterministic, so every run is reproducible.
     ollama pull qwen3:1.7b        # repeat for each model in MODELS (local only)
 
 ## Run
-    uv run agenttooleval                          # all models, all tasks, 3 repeats
+    uv run agenttooleval                          # all models, all tasks, 1 run each
     uv run agenttooleval --tasks T09,T10 --repeats 1
     uv run agenttooleval --report-only            # rebuild summary + charts
+    uv run agenttooleval --decisions              # next-action decision test -> results/decisions/
 
 ## What is scored (per run)
 | Column | Meaning |

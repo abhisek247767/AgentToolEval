@@ -91,9 +91,10 @@ def _bar_chart(names, values, title, subtitle, ylabel, fmt, path: Path):
     _finish_chart(fig, ax, title, subtitle, ylabel, max(values or [1]), path)
 
 
-def token_chart(summary: list[dict], path: Path):
-    """Stacked bars: average input + output tokens per task, one bar per model."""
-    names = [s["model"] for s in summary]
+def token_chart(summary: list[dict], names: list[str], path: Path,
+                title: str = "Tokens per task (input + output)",
+                subtitle: str = "Average per task run. Input grows with every tool call, because the whole history is re-sent."):
+    """Stacked bars: average input + output tokens, one bar per model."""
     inp = [s["avg_input_tokens"] for s in summary]
     out = [s["avg_output_tokens"] for s in summary]
     totals = [i + o for i, o in zip(inp, out)]
@@ -104,12 +105,10 @@ def token_chart(summary: list[dict], path: Path):
                   label="Output tokens")
     _label_tops(ax, bars, totals, lambda v: f"{v:,}")
     ax.legend(loc="upper right", frameon=False, fontsize=9, labelcolor=TEXT_2, ncols=2)
-    _finish_chart(fig, ax, "Tokens per task (input + output)",
-                  "Average per task run. Input grows with every tool call, because the whole history is re-sent.",
-                  "tokens", max(totals or [1]), path)
+    _finish_chart(fig, ax, title, subtitle, "tokens", max(totals or [1]), path)
 
 
-def write_report(results_csv: Path, cost_in: float, cost_out: float) -> list[dict]:
+def write_report(results_csv: Path, cost_in: float, cost_out: float, local: set[str] = frozenset()) -> list[dict]:
     rows = list(csv.DictReader(results_csv.open()))
     if not rows:
         return []
@@ -120,7 +119,7 @@ def write_report(results_csv: Path, cost_in: float, cost_out: float) -> list[dic
         w.writeheader()
         w.writerows(summary)
 
-    names = [s["model"] for s in summary]
+    names = [s["model"] + ("\n(local)" if s["model"] in local else "") for s in summary]
     _bar_chart(
         names, [s["est_cost_total_usd"] for s in summary],
         "Estimated cost per model (whole benchmark)",
@@ -139,5 +138,5 @@ def write_report(results_csv: Path, cost_in: float, cost_out: float) -> list[dic
         "Share of task runs with the correct FINAL answer.",
         "% correct", lambda v: f"{v:.0f}%", out_dir / "accuracy_by_model.png",
     )
-    token_chart(summary, out_dir / "tokens_by_model.png")
+    token_chart(summary, names, out_dir / "tokens_by_model.png")
     return summary
