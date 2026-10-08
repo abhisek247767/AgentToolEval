@@ -35,3 +35,9 @@ Tasks live in `data/tasks.json`; injected failures are the `failures` field
 - `summary.csv` - one row per model
 - `traces.json` - every tool call, argument and model reply
 - `cost_by_model.png`, `time_by_model.png`, `accuracy_by_model.png`, `tokens_by_model.png`
+
+## Read More
+
+For a detailed explanation of the benchmark, methodology, experiments, and results, read the full article:
+
+👉 [Read more about AgentToolEval: Grading How LLM Agents Use Tools, Not Just What They Answer](https://dev.to/abhisekroy169/agenttooleval-grading-how-llm-agents-use-tools-not-just-what-they-answer-26mn)
