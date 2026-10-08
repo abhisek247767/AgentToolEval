@@ -2,5 +2,5 @@ model,method,decisions,accuracy_pct,avg_input_tokens,avg_output_tokens,median_la
 gemma4:31b,chat prompt,20,100.0,232,4,0.661,0
 gpt-oss:120b,chat prompt,20,95.0,262,75,0.921,0
 gpt-oss:20b,chat prompt,20,95.0,262,78,1.434,0
-tev1:0.8b,decision endpoint,20,85.0,315,1,0.096,0
+tev1:0.8b,decision endpoint,20,85.0,315,1,2.133,0
 qwen2.5:3b,chat prompt,20,55.0,229,3,2.439,0
